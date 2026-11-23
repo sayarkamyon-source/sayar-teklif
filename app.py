@@ -27,6 +27,20 @@ st.set_page_config(
 
 st.markdown("""
 <style>
+    /* Karanlık modu devre dışı bırakıp açık (beyaz) temayı sabitle */
+    :root {
+        color-scheme: light !important;
+    }
+    html, body, [data-testid="stAppViewContainer"], [data-testid="stApp"] {
+        background-color: #ffffff !important;
+        color: #0f172a !important;
+        color-scheme: light !important;
+    }
+    [data-testid="stSidebar"], [data-testid="stSidebarContent"] {
+        background-color: #f8fafc !important;
+        color: #0f172a !important;
+    }
+
     /* Üst Streamlit header çubuğunu ve renkli çizgisini gizle */
     header[data-testid="stHeader"] {
         display: none !important;
@@ -731,9 +745,9 @@ with tab_yeni:
         genel_toplam = round(ara_toplam + kdv_tutar, 2)
 
         col_ozet.markdown(f"""
-        - **Ara Toplam:** `{ara_toplam:,.2f} ₺`
-        - **KDV (%{kdv_oran}):** `{kdv_tutar:,.2f} ₺`
-        - **GENEL TOPLAM:** **`{genel_toplam:,.2f} ₺`**
+- **Ara Toplam:** `{ara_toplam:,.2f} ₺`
+- **KDV (%{kdv_oran}):** `{kdv_tutar:,.2f} ₺`
+- **GENEL TOPLAM:** **`{genel_toplam:,.2f} ₺`**
         """)
 
     kaydet_etiketi = "💾 Değişiklikleri Kaydet ve PDF Hazırla" if st.session_state.duzenlenen_teklif_id else "💾 Teklifi Kaydet ve PDF Hazırla"

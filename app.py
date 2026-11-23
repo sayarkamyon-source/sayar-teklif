@@ -324,12 +324,17 @@ def turkce_temizle(text):
     return str(text).translate(tr_map)
 
 def get_pdf_font():
+    base_dir = os.path.dirname(os.path.abspath(__file__))
     font_paths = [
+        os.path.join(base_dir, "DejaVuSans.ttf"),
+        "DejaVuSans.ttf",
         "C:/Windows/Fonts/arial.ttf",
         "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
         "/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf"
     ]
     bold_paths = [
+        os.path.join(base_dir, "DejaVuSans-Bold.ttf"),
+        "DejaVuSans-Bold.ttf",
         "C:/Windows/Fonts/arialbd.ttf",
         "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
         "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf"
@@ -423,8 +428,8 @@ def pdf_olustur(teklif_data):
             txt(item["nakliye"]),
             txt(item["birim"]),
             f"{item['miktar']:,.2f}",
-            f"{item['fiyat']:,.2f} ₺",
-            f"{item['tutar']:,.2f} ₺"
+            f"{item['fiyat']:,.2f} TL",
+            f"{item['tutar']:,.2f} TL"
         ])
 
     col_widths = [24, 200, 55, 50, 42, 48, 56, 60]

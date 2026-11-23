@@ -374,8 +374,8 @@ def pdf_olustur(teklif_data):
     c.setFont(font_bold, 13)
     c.drawCentredString(width / 2, height - 122, txt("TEKLİF MEKTUBU & SATIŞ SÖZLEŞMESİ"))
 
-    # Müşteri ve Belge Bilgileri
-    y = height - 144
+    # Müşteri ve Belge Bilgileri (Başlık altı boşluğu artırıldı)
+    y = height - 154
     c.setFont(font_bold, 8.5)
     c.drawString(35, y, txt("FİRMA ADI:"))
     c.setFont(font_reg, 8.5)
@@ -386,7 +386,7 @@ def pdf_olustur(teklif_data):
     c.setFont(font_reg, 8.5)
     c.drawString(450, y, txt(teklif_data["tarih"]))
 
-    y -= 15
+    y -= 16
     c.setFont(font_bold, 8.5)
     c.drawString(35, y, txt("YETKİLİ KİŞİ:"))
     c.setFont(font_reg, 8.5)
@@ -397,7 +397,7 @@ def pdf_olustur(teklif_data):
     c.setFont(font_reg, 8.5)
     c.drawString(450, y, txt(teklif_data["belge_no"]))
 
-    y -= 15
+    y -= 16
     c.setFont(font_bold, 8.5)
     c.drawString(35, y, txt("TELEFON NO:"))
     c.setFont(font_reg, 8.5)
@@ -440,16 +440,17 @@ def pdf_olustur(teklif_data):
         ("ALIGN", (5, 1), (-1, -1), "RIGHT"),
         ("GRID", (0, 0), (-1, -1), 0.4, colors.HexColor("#cbd5e1")),
         ("ROWBACKGROUNDS", (0, 1), (-1, -1), [colors.white, colors.HexColor("#f8fafc")]),
-        ("TOPPADDING", (0, 0), (-1, -1), 4),
-        ("BOTTOMPADDING", (0, 0), (-1, -1), 4),
+        ("TOPPADDING", (0, 0), (-1, -1), 5),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 5),
     ]))
 
+    # Tablo üst boşluğu artırıldı
     table_w, table_h = table.wrapOn(c, width, height)
-    table_y = y - 20 - table_h
+    table_y = y - 30 - table_h
     table.drawOn(c, 30, table_y)
 
-    # Alt Toplamlar
-    alt_y = table_y - 22
+    # Alt Toplamlar (Tablo alt boşluğu artırıldı)
+    alt_y = table_y - 34
     c.setFont(font_bold, 8.5)
     c.drawRightString(495, alt_y, txt("ARA TOPLAM:"))
     c.setFont(font_reg, 8.5)
@@ -468,8 +469,8 @@ def pdf_olustur(teklif_data):
     c.drawRightString(565, alt_y, f"{teklif_data['genel_toplam']:,.2f} TL")
     c.setFillColor(colors.black)
 
-    # Satış ve Ödeme Şartları
-    sart_y = table_y - 22
+    # Satış ve Ödeme Şartları (Tablo alt boşluğu artırıldı)
+    sart_y = table_y - 34
     c.setFont(font_bold, 8.5)
     c.drawString(35, sart_y, txt("SATIŞ & ÖDEME ŞARTLARI:"))
     c.setFont(font_reg, 8)

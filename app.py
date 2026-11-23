@@ -459,19 +459,19 @@ def pdf_olustur(teklif_data):
     c.setFont(font_bold, 8.5)
     c.drawRightString(495, alt_y, txt("ARA TOPLAM:"))
     c.setFont(font_reg, 8.5)
-    c.drawRightString(565, alt_y, f"{teklif_data['ara_toplam']:,.2f} TL")
+    c.drawRightString(565, alt_y, f"{teklif_data['ara_toplam']:,.2f} ₺")
 
     alt_y -= 14
     c.setFont(font_bold, 8.5)
     c.drawRightString(495, alt_y, txt(f"KDV (%{int(teklif_data['kdv_oran'])}):"))
     c.setFont(font_reg, 8.5)
-    c.drawRightString(565, alt_y, f"{teklif_data['kdv_tutar']:,.2f} TL")
+    c.drawRightString(565, alt_y, f"{teklif_data['kdv_tutar']:,.2f} ₺")
 
     alt_y -= 16
     c.setFillColor(colors.HexColor("#dc2626"))
     c.setFont(font_bold, 9.5)
     c.drawRightString(495, alt_y, txt("GENEL TOPLAM:"))
-    c.drawRightString(565, alt_y, f"{teklif_data['genel_toplam']:,.2f} TL")
+    c.drawRightString(565, alt_y, f"{teklif_data['genel_toplam']:,.2f} ₺")
     c.setFillColor(colors.black)
 
     # Satış ve Ödeme Şartları (Tablo alt boşluğu artırıldı)

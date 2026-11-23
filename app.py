@@ -88,15 +88,28 @@ def hazirla_seffaf_logo():
 
     cikti = "logo_temiz.png"
     img = Image.open(kaynak).convert("RGBA")
-    veriler = img.getdata()
-    yeni_veri = []
-    for r, g, b, a in veriler:
-        if r < 25 and g < 25 and b < 25:
-            yeni_veri.append((255, 255, 255, 0))
-        else:
-            yeni_veri.append((r, g, b, a))
-    img.putdata(yeni_veri)
-    img.save(cikti, "PNG")
+
+    # Çok büyük görsellerde bellek ve hız için genişliği en fazla 800px yap
+    max_genislik = 800
+    if img.width > max_genislik:
+        yeni_yukseklik = int(img.height * (max_genislik / img.width))
+        img = img.resize((max_genislik, yeni_yukseklik), Image.Resampling.LANCZOS)
+
+    try:
+        import numpy as np
+        arr = np.array(img, dtype=np.uint8)
+        siyah_maske = (arr[:, :, 0] < 25) & (arr[:, :, 1] < 25) & (arr[:, :, 2] < 25)
+        arr[siyah_maske] = [255, 255, 255, 0]
+        img = Image.fromarray(arr, mode="RGBA")
+    except ImportError:
+        veriler = img.get_flattened_data() if hasattr(img, "get_flattened_data") else img.getdata()
+        yeni_veri = [
+            (255, 255, 255, 0) if (r < 25 and g < 25 and b < 25) else (r, g, b, a)
+            for r, g, b, a in veriler
+        ]
+        img.putdata(yeni_veri)
+
+    img.save(cikti, "PNG", optimize=True)
     return cikti
 
 # ---------------------------------------------------------

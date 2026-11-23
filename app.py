@@ -428,8 +428,8 @@ def pdf_olustur(teklif_data):
             txt(item["nakliye"]),
             txt(item["birim"]),
             f"{item['miktar']:,.2f}",
-            f"{item['fiyat']:,.2f} TL",
-            f"{item['tutar']:,.2f} TL"
+            f"{item['fiyat']:,.2f} ₺",
+            f"{item['tutar']:,.2f} ₺"
         ])
 
     col_widths = [24, 200, 55, 50, 42, 48, 56, 60]

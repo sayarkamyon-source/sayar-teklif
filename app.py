@@ -115,7 +115,8 @@ def hazirla_seffaf_logo():
 # ---------------------------------------------------------
 # 3. VERİTABANI YÖNETİMİ (SQLite - TEKLİFLER, ÜRÜNLER & YETKİLİLER)
 # ---------------------------------------------------------
-DB_PATH = "sayar_teklifler.db"
+os.makedirs("/data", exist_ok=True)
+DB_PATH = "/data/sayar_teklifler.db"
 
 BASLANGIC_URUNLERI = [
     ("ALÇIMATİK 35 KG. (ALÇI ESASLI MAK. SIVASI)", "ENTEGRE", "İSTANBUL", "HARİÇ", "TORBA", 0.0),
